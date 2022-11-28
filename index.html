@@ -85,8 +85,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       vec3.set(shadow.scale, 0.15, 0.15, 0.15);
       arObject.addNode(shadow);
 
-      const MAX_FLOWERS = 1;
-      let flowers = [];
+      const MAX_Amitabh = 1;
+      let Amitabh = [];
 
       // Ensure the background is transparent for AR.
       scene.clear = false;
@@ -161,10 +161,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         xrButton.setSession(null);
       }
 
+     // function addARObjectAt(matrix) {
+     //   let newFlower = arObject.clone();
+      //  newFlower.visible = true;
+      //  newFlower.matrix = matrix;
+       // scene.addNode(newFlower);
+//
+       // flowers.push(newFlower);
+
       // Adds a new object to the scene at the
       // specified transform.
       function addARObjectAt(matrix) {
-        let newAmitabh = arObject.clone();
+       // let newAmitabh = arObject.clone();
         newAmitabh.visible = true;
         newAmitabh.matrix = matrix;
         scene.addNode(newAmitabh);
@@ -173,8 +181,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         // For performance reasons if we add too many objects start
         // removing the oldest ones to keep the scene complexity
         // from growing too much.
-        if (flowers.length > MAX_FLOWERS) {
-          let oldFlower = flowers.shift();
+        if (Amitabh.length > MAX_Amitabh) {
+          let oldFlower = Amitabh.shift();
           scene.removeNode(oldFlower);
         }
       }
