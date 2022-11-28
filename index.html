@@ -73,7 +73,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       //arObject.addNode(flower);
 
       let amitabh = new VideoNode({url: 'AR_Video_9.mp4'});
-      arObject.addNode(amitabh);
+      arObject.addVideoNode(amitabh);
 
       let reticle = new Gltf2Node({url: 'reticle/reticle.gltf'});
       reticle.visible = false;
@@ -173,18 +173,18 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       // specified transform.
       function addARObjectAt(matrix) {
        // let newAmitabh = arObject.clone();
-        newAmitabh.visible = true;
-        newAmitabh.matrix = matrix;
-        scene.addNode(newAmitabh);
-        amitabh.push(newAmitabh);
+        amitabh.visible = true;
+        amitabh.matrix = matrix;
+        scene.addVideoNode(amitabh);
+        amitabh.push(amitabh);
 
         // For performance reasons if we add too many objects start
         // removing the oldest ones to keep the scene complexity
         // from growing too much.
-        if (Amitabh.length > MAX_Amitabh) {
-          let oldFlower = Amitabh.shift();
-          scene.removeNode(oldFlower);
-        }
+       // if (Amitabh.length > MAX_Amitabh) {
+        //  let oldFlower = Amitabh.shift();
+        //  scene.removeNode(oldFlower);
+       // }
       }
 
       let rayOrigin = vec3.create();
