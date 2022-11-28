@@ -73,7 +73,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       arObject.addNode(flower);
 
       let amitabh = new Gltf2Node({url: './AR_Video_9.mp4'});
-      arObject.addNode(amitabh);
+      arObject.addVideoNode(amitabh);
 
       let reticle = new Gltf2Node({url: 'reticle/reticle.gltf'});
       reticle.visible = false;
@@ -167,7 +167,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         let newAmitabh = arObject.clone();
         newAmitabh.visible = true;
         newAmitabh.matrix = matrix;
-        scene.addNode(newAmitabh.playVideoComponent);
+        scene.addNode(newAmitabh);
         amitabh.push(newAmitabh);
 
         // For performance reasons if we add too many objects start
