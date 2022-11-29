@@ -41,6 +41,16 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         </p>
       </details>
     </header>
+    <a-assets>
+      <video
+      id="amitabh"
+      playsinline
+      crossorigin="anonymous"
+      loop="true"
+      src="./AR_Video_9.mp4">
+    </video>
+
+    </a-assets>
     <script type="module">
       import {WebXRButton} from './webxr-button.js';
       import {Scene} from './scene.js';
@@ -72,7 +82,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       //let flower = new Gltf2Node({url: 'sunflower/sunflower.gltf'});
       //arObject.addNode(flower);
 
-      let amitabh = new VideoNode({url: 'AR_Video_9.mp4'});
+      let amitabh = new VideoNode(id='amitabh');
       arObject.addVideoNode(amitabh);
 
       let reticle = new Gltf2Node({url: 'reticle/reticle.gltf'});
