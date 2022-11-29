@@ -44,6 +44,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <a-assets>
       <video
       id="amitabh"
+      active="false"
       playsinline
       crossorigin="anonymous"
       loop="true"
@@ -83,6 +84,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       //arObject.addNode(flower);
 
       let amitabh = new VideoNode(id='amitabh');
+      amitabh.active='true'
       arObject.addVideoNode(amitabh);
 
       let reticle = new Gltf2Node({url: 'reticle/reticle.gltf'});
