@@ -41,16 +41,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         </p>
       </details>
     </header>
-    <a-assets>
-      <video
-      id="amitabh"
-      playsinline
-      crossorigin="anonymous"
-      loop="true"
-      src="./AR_Video_9.mp4">
-    </video>
-
-    </a-assets>
     <script type="module">
       import {WebXRButton} from './webxr-button.js';
       import {Scene} from './scene.js';
@@ -62,6 +52,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       import {Ray} from './ray.js';
       import {VideoNode} from './video.js';
       import {playVideoComponent} from './target-video.js';
+
+      let autoplayCheckbox = document.getElementById('autoplayVideo');
 
       // XR globals.
       let xrButton = null;
@@ -75,6 +67,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       let scene = new Scene();
       scene.enableStats(false);
 
+      let video = document.createElement('video');
+      video.loop = true;
+      video.src = './AR_Video_9.mp4';
+
       let arObject = new Node();
       arObject.visible = false;
       scene.addNode(arObject);
@@ -85,12 +81,38 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
      // let amitabh = new VideoNode(id='amitabh');
      // arObject.addVideoNode(amitabh);
 
-       let amitabh = new VideoNode(id='amitabh');
+      let amitabh = new VideoNode(id='video');
       scene.addVideoNode(amitabh);
 
       let reticle = new Gltf2Node({url: 'reticle/reticle.gltf'});
       reticle.visible = false;
       scene.addNode(reticle);
+
+      videoNode.onSelect(() => {
+        if (!video.paused) {
+          playButton.visible = true;
+          video.pause();
+        } else {
+          playButton.visible = false;
+          video.play();
+        }
+      });
+      videoNode.selectable = true;
+
+      videoNode.translation = [0.025, 0.275, -4.4];
+      videoNode.scale = [2.1, 1.1, 1.0];
+      scene.addNode(videoNode);
+
+      video.addEventListener('loadeddata', () => {
+        // Once the video has loaded up adjust the aspect ratio of the "screen"
+        // to fit the video's native shape.
+        let aspect = videoNode.aspectRatio;
+        if (aspect < 2.0) {
+          videoNode.scale = [aspect * 1.1, 1.1, 1.0];
+        } else {
+          videoNode.scale = [2.1, 2.1 / aspect, 1.0];
+        }
+      });
 
       // Having a really simple drop shadow underneath an object helps ground
       // it in the world without adding much complexity.
@@ -186,10 +208,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       // specified transform.
       function addARObjectAt(matrix) {
        // let newAmitabh = arObject.clone();
-        amitabh.visible = true;
-        amitabh.matrix = matrix;
-        scene.addVideoNode(amitabh);
-        amitabh.push(amitabh);
+        video.visible = true;
+        video.matrix = matrix;
+        scene.addVideoNode(video);
+        video.push(video);
 
         // For performance reasons if we add too many objects start
         // removing the oldest ones to keep the scene complexity
